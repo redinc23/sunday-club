@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sunday Club — Pickleball</title>
+  <link rel="stylesheet" href="css/game.css" />
+</head>
+<body>
+  <canvas id="game"></canvas>
+  <div class="hud" id="hud">
+    <div class="topbar">
+      <div class="scoreboard">
+        <div class="scoreline">
+          <div class="big" id="scoreText">0-0-2</div>
+          <div class="meta" id="lastShot">Sunday Club</div>
+        </div>
+        <div class="teams">
+          <span class="you" id="teamA">You / Partner</span>
+          <span id="teamB">Visitors</span>
+        </div>
+      </div>
+      <div class="statechip" id="stateText">Kitchen is sacred.</div>
+      <div class="helpchip">
+        WASD move · hold Space / click to swing<br />
+        1–8 shots · Q mine · E switch · P pause · ` debug
+      </div>
+    </div>
+    <div class="banner" id="banner"></div>
+    <div class="callout" id="callout"></div>
+    <pre class="debug" id="debug"></pre>
+    <div class="toast-kitchen" id="kitchenToast">Kitchen line — volley illegal</div>
+    <div class="bottombar">
+      <div>
+        <div class="shotbar" id="shots"></div>
+        <div class="charge"><i id="chargeBar"></i></div>
+      </div>
+    </div>
+  </div>
+  <div class="panel open" id="menu">
+    <div class="card">
+      <div class="brand">
+        <h1><span>Original club-first pickleball</span>Sunday Club</h1>
+        <p class="tag">Not a licensed tour. Doubles is the default. The kitchen is sacred. One more game.</p>
+      </div>
+      <div class="grid">
+        <div>
+          <div class="modes">
+            <button class="mode primary" data-mode="learn"><b>Learn by playing</b><span>Finish a real rec game in the first ten minutes.</span></button>
+            <button class="mode" data-mode="quick"><b>Quick Match</b><span>Configure format, court, and rules, then play.</span></button>
+            <button class="mode" data-mode="rec"><b>Open Play / Rec Queue</b><span>The real front door. Rotate a social court.</span></button>
+            <button class="mode" data-mode="career"><b>Club Career</b><span>Belong locally. Six chapters from arrival to pavilion.</span></button>
+            <button class="mode" data-mode="ranked"><b>Ranked</b><span>Glasshouse reference court. Side-out to 11, win by two.</span></button>
+            <button class="mode" data-mode="training"><b>Training Academy</b><span>Drops, dinks, kitchen discipline, no match clock.</span></button>
+          </div>
+        </div>
+        <div class="side">
+          <h2>Match setup</h2>
+          <div class="kv">
+            <b>Name</b><input class="field" id="nameInput" maxlength="18" />
+            <b>Format</b>
+            <select class="select" id="formatSelect">
+              <option value="doubles">Doubles</option>
+              <option value="singles">Singles</option>
+            </select>
+            <b>Rules</b>
+            <select class="select" id="rulesSelect">
+              <option value="sideout">Side-out</option>
+              <option value="rally">Rally scoring</option>
+              <option value="rec">Rec relaxed</option>
+            </select>
+            <b>To</b>
+            <select class="select" id="targetSelect">
+              <option>11</option><option>7</option><option>15</option><option>21</option>
+            </select>
+            <b>Court</b><select class="select" id="courtSelect"></select>
+            <b>Paddle</b><select class="select" id="paddleSelect"></select>
+            <b>Camera</b>
+            <select class="select" id="camSelect">
+              <option value="broadcast">Broadcast</option>
+              <option value="player">Player chase</option>
+              <option value="sideline">Sideline</option>
+            </select>
+          </div>
+          <div id="xpView" style="font-size:12px;color:#c7d4c6"></div>
+          <h2 style="margin-top:14px">Rules engine tests</h2>
+          <button class="pill" id="testsBtn">Run scenarios</button>
+          <pre id="testsOut" style="margin-top:8px;font-size:11px;white-space:pre-wrap;color:#d7e3d6"></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pause" id="pause">
+    <div class="box">
+      <div id="endcard" class="hidden">
+        <h2 id="endTitle">Match over</h2>
+        <p id="endBody"></p>
+        <button id="rematchBtn">Rematch</button>
+        <button id="nextCareerBtn">Next chapter</button>
+      </div>
+      <div>
+        <h2 id="pauseTitle">Paused</h2>
+        <p style="margin:8px 0 4px;font-size:13px;color:#445">Kitchen line stays visible. Faults are labeled. Doubles is the conversation.</p>
+        <button id="resumeBtn">Resume</button>
+        <button id="menuBtn">Clubhouse</button>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/rules.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/engine.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
